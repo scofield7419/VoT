@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Video-of-Thought">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video-of-Thought: Step-by-Step Video Reasoning from Perception to Cognition</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.icon">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Video-of-Thought: Step-by-Step Video Reasoning from Perception to Cognition</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://haofei.vip/">Hao Fei</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://chocowu.github.io/">Shengqiong Wu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jiwei0523.github.io/">Wei Ji</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://personal.ntu.edu.sg/hanwangzhang/">Hanwang Zhang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zhangmeishan.github.io/">Meishan Zhang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.comp.nus.edu.sg/~leeml/">Mong-Li Lee</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.comp.nus.edu.sg/~whsu/">Wynne Hsu</a><sup>1</sup>
+            </span>
+          </div>
+
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>National University of Singapore,</span><br>
+            <span class="author-block"><sup>2</sup>Nanyang Technological University,</span><br>
+            <span class="author-block"><sup>3</sup>Harbin Institute of Technology (Shenzhen)</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="http://haofei.vip/downloads/papers/VoT_2024.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/scofield7419/Video-of-Thought"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+<!--              <span class="link-block">-->
+<!--                <a href="https://arxiv.org/abs/2305.11255"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="ai ai-arxiv"></i>-->
+<!--                  </span>-->
+<!--                  <span>arXiv</span>-->
+<!--                </a>-->
+<!--              </span>-->
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="./static/media/xxx.mp4"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Poster Link. -->
+              <span class="link-block">
+              <a href="./static/media/xxx.pdf" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <svg class="svg-inline--fa fa-chalkboard fa-w-20" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chalkboard" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M96 64h448v352h64V40c0-22.06-17.94-40-40-40H72C49.94 0 32 17.94 32 40v376h64V64zm528 384H480v-64H288v64H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h608c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path></svg><!-- <i class="fas fa-chalkboard"></i> Font Awesome fontawesome.com -->
+                </span>
+                <span>Poster</span>
+              </a>
+            </span>
+
+              <!-- Dataset Link. -->
+<!--              <span class="link-block">-->
+<!--                <a href="https://github.com/google/nerfies/releases/tag/0.1"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="far fa-images"></i>-->
+<!--                  </span>-->
+<!--                  <span>Data</span>-->
+<!--                  </a>                -->
+<!--              </span>-->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--<section class="hero is-light is-small">-->
+<!--  <div class="hero-body">-->
+<!--    <div class="container">-->
+<!--      <div id="results-carousel" class="carousel results-carousel">-->
+<!--        <div class="item item-steve">-->
+<!--          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/steve.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-chair-tp">-->
+<!--          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/chair-tp.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-shiba">-->
+<!--          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/shiba.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-fullbody">-->
+<!--          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/fullbody.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-blueshirt">-->
+<!--          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/blueshirt.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-mask">-->
+<!--          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/mask.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-coffee">-->
+<!--          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/coffee.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-toby">-->
+<!--          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">-->
+<!--            <source src="./static/videos/toby2.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Existing research of video understanding still struggles to achieve in-depth comprehension and reasoning in complex videos,
+            primarily due to the under-exploration of two key bottlenecks: fine-grained spatial-temporal perceptive understanding and cognitive-level video scene comprehension.
+            This paper bridges the gap by presenting a novel solution.
+            We first introduce a novel video Multimodal Large Language Model (MLLM), <b>MotionEpic</b>, which achieves fine-grained pixel-level spatial-temporal video grounding by integrating video spatial-temporal scene graph (STSG) representation.
+            Building upon MotionEpic, we then develop a <b>Video-of-Thought</b> (<b>VoT</b>) reasoning framework.
+            VoT inherits the Chain-of-Thought (CoT) core, breaking down a complex task into simpler and manageable sub-problems, and addressing them step-by-step from a low-level pixel perception to high-level cognitive interpretation.
+            Extensive experiments across various complex video QA benchmarks demonstrate that our overall framework strikingly boosts existing state-of-the-art.
+            To our knowledge, this is the first attempt at successfully implementing the CoT technique for achieving human-level video reasoning, where we show great potential in extending it to a wider range of video understanding scenarios.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<!--<section class="section">-->
+<!--  <div class="container is-max-desktop">-->
+<!--    <div class="columns is-centered has-text-centered">-->
+<!--      <div class="column is-four-fifths">-->
+<!--        <h2 class="title is-3">Presentation</h2>-->
+<!--        <div class="publication-video">-->
+<!--          <video  controls playsinline height="100%">-->
+<!--              <source src="./static/media/paper-intro-468-recd.mp4" type="video/mp4">-->
+<!--            </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper intro. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Video-of-Thought (VoT)</h2>
+        <h2 class="title is-3" style="margin-top: -10px">Video Reasoning Framework</h2>
+<!--          <p style="text-align:left" >-->
+<!--            Here is the illustration of detecting the explicit and implicit sentiment polarities towards targets.-->
+<!--            Explicit opinion expression can help direct inference of the sentiment, while detecting implicit sentiment requires common-sense and multi-hop reasoning.-->
+<!--          </p><br>-->
+        <div class="publication-image" style="text-align:left">
+          <b style="text-align:left;font-size: 1.5em">▶ Framework Overview</b>
+        </div>
+        <div class="publication-image" style="text-align:center">
+          <img width="90%" src="./static/images/VoT.png">
+        </div>
+        <br>
+
+
+        <div class="publication-image" style="text-align:left">
+          <b>▶ Step 1: Task Definition and Target Identification</b>
+          <p style="text-align:justify">Given an input video and a question, VoT identifies the possible target(s) involved in the question to observe.<p>
+          <center><img  width="70%" src="./static/images/step1.png"></center>
+          <p style="text-align:justify">After this step, all the possible <b>Target</b> involved in the question will be confirmed.</p>
+        </div>
+        <br>
+
+        <div class="publication-image" style="text-align:left">
+          <b>▶ Step-2: Object Tracking</b>
+          <p style="text-align:justify">The system then grounds the temporal tracklet(s), which serves as supporting evidence/rationale for content perception in subsequent analysis. <p>
+          <center><img  width="70%" src="./static/images/step2.png"></center>
+          <p style="text-align:justify">The yielded grounded <b>Target Tracklet</b> of STSG will serve as low-level evidence (i.e., supporting rationale) for the next step of behavior analysis.</p>
+        </div>
+        <br>
+
+
+        <div class="publication-image" style="text-align:left">
+          <b>▶ Step-3: Action Analyzing</b>
+          <p style="text-align:justify">Combined with factual commonsense, VoT next interprets the target object's trajectory and its interactions with neighboring scenes to thoroughly understand the action dynamics and semantics.<p>
+          <center><img  width="70%" src="./static/images/step3.png"></center>
+          <p style="text-align:justify">This step yields the target action's <b>Observation and Implication</b>.</p>
+        </div>
+        <br>
+
+
+        <div class="publication-image" style="text-align:left">
+          <b>▶ Step-4: Question Answering via Ranking</b>
+          <p style="text-align:justify">With in-depth understanding of the target actions in the video, we then carefully examine each optional answer with commonsense knowledge, where the final result is output after ranking those candidates.<p>
+          <center><img  width="70%" src="./static/images/step4.png"></center>
+          <p style="text-align:justify">We then rank the scores of all options and select the most optimal answer <b>Answer</b>.</p>
+        </div>
+        <br>
+
+
+
+        <div class="publication-image" style="text-align:left">
+          <b>▶ Step-5: Answer Verification</b>
+          <p style="text-align:justify">Finally, VoT performs verification for the answer from both pixel grounding perception and commonsense cognition perspectives, ensuring the most factually accurate result.<p>
+          <center><img  width="70%" src="./static/images/step5.png"></center>
+          <p style="text-align:justify">If any inconsistencies are found in perception and cognition perspectives, we record the corresponding rationale, and re-execute the 4-th step to reselect the answer.
+This approach ensures that the final outcome is the most factually accurate.</p>
+        </div>
+        <br>
+
+      </div>
+
+    </div>
+    <!--/ Paper intro. -->
+  </div>
+</section>
+
+
+
+<section class="section" style="margin-top: -10px">
+  <div class="container is-max-desktop">
+    <!-- Paper method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">MotionEpic</h2>
+        <h2 class="title is-3" style="margin-top: -10px;font-size: 1.8em">Fine-grained Spatiotemporal-grounded Video MLLM</h2>
+          <p style="text-align:left">
+          We introduce a novel video LLM, namely <b>MotionEpic</b>,
+            which, based on a similar architecture as existing popular video MLLMs, supports not only video input but also the encoding, understanding and generation of STSGs.
+
+          </p><br>
+        <div class="publication-image">
+          <img width="80%" src="./static/images/MotionEpic.png">
+        </div>
+        <br>
+
+
+        <div class="publication-image" style="text-align:left">
+          <b style="font-size: 1.5em">▶ STSG Representation Integration</b>
+          <p style="text-align:justify">We propose the integration of a STSG representation, modeling both the input video and its STSG representation,
+            where fine-grained spatial-temporal features are carefully integrated and modeled.<p>
+          <center><img  width="90%" src="./static/images/STSG.png"></center>
+
+        </div>
+        <br>
+
+
+
+        <div class="publication-image" style="text-align:left">
+          <b style="font-size: 1.5em">▶ Fine-grained Video-Scene Grounding-aware Tuning</b>
+          <p style="text-align:justify">To enable MotionEpic with fine-grained pixel-level spatial-temporal grounding between videos and STSGs, we also investigate various distinct video-STSG training objects.
+STSG annotations are used during the grounding-aware tuning phase, while in the subsequent stage, the system is learned to autonomously parse STSG,
+            and thus supports STSG-free inference and reasoning for downstream tasks.<p>
+<!--          <center><img  width="70%" src="./static/images/STSG.png"></center>-->
+
+
+        </div>
+        <br>
+
+
+        <div class="publication-image" style="text-align:left; margin-left: 40px">
+        <ol>
+            <li><b>Enhancing coarse-grained correspondence</b>
+                <ul>
+                    <li><b>L<sub>1</sub></b>: predicting if the overall input video and STSG are paired.</li>
+                    <li><b>L<sub>2</sub></b>: given a video, generating the whole STSG (expression) of the video.</li>
+                </ul>
+            </li>
+            <li><b>Enhancing fine-grained correspondence</b>
+                <ul>
+                    <li><b>L<sub>3</sub></b>: given a video and action description(s), outputting the corresponding object tracklet(s), i.e., a partial STSG.</li>
+                    <li><b>L<sub>4</sub></b>: given a video and key object(s), describing the corresponding temporal action(s) in textual response, and outputting the corresponding object tracklet(s).</li>
+                    <li><b>L<sub>5</sub></b>: given a video and a bbox of a certain frame's object, outputting the object label, as well as the corresponding tracklet.</li>
+                </ul>
+            </li>
+        </ol>
+        </div>
+
+
+
+      </div>
+    </div>
+    <!--/ Paper method. -->
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="section" style="margin-top: 0px">
+  <div class="container is-max-desktop">
+    <!-- Paper Experiment. -->
+    <div class="columns is-centered has-text-centered">
+
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3">Experiment</h2>
+
+        <p style="text-align:left">
+          <b style="font-size: 1.5em">▶ Main results on 6 video QA datasets</b>
+        </p><br>
+        <div class="publication-image">
+          <center><img width="74%" src="./static/images/res1.png"></center>
+        </div><br>
+        <div class="publication-image">
+          <center><img width="70%" src="./static/images/res2.png"></center>
+        </div><br>
+        <div class="publication-image">
+          <center><img width="70%" src="./static/images/res3.png"></center>
+        </div>
+        <br>
+
+        <p style="text-align:left">
+          <b style="font-size: 1.5em">▶ Few-shot results on 4 video QA datasets</b>
+        </p><br>
+        <div class="publication-image">
+          <center><img width="70%" src="./static/images/res4.png"></center>
+        </div><br>
+
+
+        <p style="text-align:left">
+          <b style="font-size: 1.5em">▶ Visualization</b>
+        </p><br>
+        <div class="publication-image" style="text-align: center">
+          <figure style="width:100%">
+              <img src="./static/images/case.png">
+              <figcaption>
+                  <p style="text-align: justify;">
+                          <b>Case.1 :</b> Visualization of qualitative example showcasing how our VoT framework achieves successful video reasoning.
+                      </font>
+                  </p>
+              </figcaption>
+          </figure>
+<!--          <center><img width="100%" src="./static/images/case.png"></center>-->
+        </div><br><br>
+        <div class="publication-image" style="text-align: center">
+          <figure style="width:100%">
+              <img src="./static/images/case2.png">
+              <figcaption>
+                  <p style="text-align: justify;">
+                          <b>Case.2 :</b> Qualitative examples of perception-level reasoning. The correct answer is marked with a green checkmark, and
+the wrong answer is marked with a red cross.
+                      </font>
+                  </p>
+              </figcaption>
+          </figure>
+<!--          <center><img width="100%" src="./static/images/case2.png"></center>-->
+        </div><br><br>
+        <div class="publication-image" style="text-align: center">
+          <figure style="width:100%">
+              <img src="./static/images/case3.png">
+              <figcaption>
+                  <p style="text-align: justify;">
+                          <b>Case.3 :</b> Qualitative examples of cognitive-level reasoning.
+                      </font>
+                  </p>
+              </figcaption>
+          </figure>
+<!--          <center><img width="100%" src="./static/images/case3.png"></center>-->
+        </div><br>
+
+      </div>
+      </div>
+    <!--/ Paper method. -->
+  </div>
+</section>
+
+
+
+
+
+<!--<section class="section" style="margin-top: 0px">-->
+<!--  <div class="container is-max-desktop">-->
+<!--    &lt;!&ndash; Paper Case. &ndash;&gt;-->
+<!--    <div class="columns is-centered has-text-centered">-->
+
+<!--      <div class="column is-four-fifths">-->
+<!--        <h2 class="title is-3">Demos</h2>-->
+<!--          <p style="text-align:left">-->
+<!--            <b>Some Comparisons</b> between THOR and the vanilla prompting method, and the zero-shot CoT method (Prompt + ‘Lets think step by step’).-->
+<!--          </p><br>-->
+
+<!--        <p class="title is-3" style="font-size: 25px">&#8226; Case-I</p>-->
+
+<!--        <p style="text-align:left">-->
+<!--            <b>&#8226; Vanilla prompt-based result:</b>-->
+<!--          </p>-->
+<!--        <div class="publication-image">-->
+<!--          <center><img width="90%" src="./static/images/case1-prompt.png"></center>-->
+<!--        </div>-->
+
+<!--        <p style="text-align:left">-->
+<!--            <b>&#8226; Result by zero-shot CoT method:</b>-->
+<!--          </p>-->
+<!--        <div class="publication-image">-->
+<!--          <center><img width="90%" src="./static/images/case1-ZeroCoT.png"></center>-->
+<!--        </div>-->
+
+<!--        <p style="text-align:left">-->
+<!--            <b>&#8226; Result by our THOR method:</b>-->
+<!--          </p>-->
+<!--        <div class="publication-image">-->
+<!--          <center><img width="90%" src="./static/images/case1-THOR.png"></center>-->
+<!--        </div>-->
+
+
+<!--        <p class="title is-3" style="font-size: 25px">&#8226; Case-2</p>-->
+
+<!--        <p style="text-align:left">-->
+<!--            <b>&#8226; Vanilla prompt-based result:</b>-->
+<!--          </p>-->
+<!--        <div class="publication-image">-->
+<!--          <center><img width="90%" src="./static/images/case2-prompt.png"></center>-->
+<!--        </div>-->
+
+<!--        <p style="text-align:left">-->
+<!--            <b>&#8226; Result by zero-shot CoT method:</b>-->
+<!--          </p>-->
+<!--        <div class="publication-image">-->
+<!--          <center><img width="90%" src="./static/images/case2-ZeroCoT.png"></center>-->
+<!--        </div>-->
+
+<!--        <p style="text-align:left">-->
+<!--            <b>&#8226; Result by our THOR method:</b>-->
+<!--          </p>-->
+<!--        <div class="publication-image">-->
+<!--          <center><img width="90%" src="./static/images/case2-THOR.png"></center>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--      </div>-->
+<!--    &lt;!&ndash;/ Paper method. &ndash;&gt;-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Paper</h2>
+        <div class="publication-image">
+          <object data="http://haofei.vip/downloads/papers/VoT_2024.pdf" type="application/pdf" width="100%" height="1020px"></object>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{VoT24Hao,
+  author    = {Hao Fei, Shengqiong Wu, Wei Ji, Hanwang Zhang, Meishan Zhang, Mong-Li Lee, Wynne Hsu},
+  title     = {Video-of-Thought: Step-by-Step Video Reasoning from Perception to Cognition},
+  journal   = {Proceedings of the International Conference on Machine Learning (ICML)},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="container">
+<!--    <div class="content has-text-centered">-->
+<!--      <a class="icon-link"-->
+<!--         href="./static/videos/nerfies_paper.pdf">-->
+<!--        <i class="fas fa-file-pdf"></i>-->
+<!--      </a>-->
+<!--      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>-->
+<!--        <i class="fab fa-github"></i>-->
+<!--      </a>-->
+<!--    </div>-->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template credit to <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
+            licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 License</a>.
+          </p>
+<!--          <p>-->
+<!--            This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,-->
+<!--            we just ask that you link back to this page in the footer.-->
+<!--            Please remember to remove the analytics code included in the header of the website which-->
+<!--            you do not want on your website.-->
+<!--          </p>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
